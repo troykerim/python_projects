@@ -13,23 +13,37 @@ def div(a, b):
 print("Welcome to the calculator")
 print("Use 2 numbers.")
 
-print("Selection an option below:")
-print("\nEnter 'a' for addition")
-print("\nEnter 's' for subtract")
-print("\nEnter 'm' for multiplication")
-print("\nEnter 'd' for division")
+while True:    
+    print("Selection an option below:")
+    print("\nEnter 'a' for addition")
+    print("\nEnter 's' for subtract")
+    print("\nEnter 'm' for multiplication")
+    print("\nEnter 'd' for division")
+    choice = input("Your input: ").lower()
 
-choice = input("Your input: ").lower()
-n1 = int(input("Your 1st number: "))
-n2 = int(input("Your 2nd number: "))
+    
+    try:
+        n1 = int(input("Your 1st number: "))
+        n2 = int(input("Your 2nd number: "))
+    except ValueError:
+        print("Invalid number input! Please enter integers.")
+        continue
 
-if choice == 'a':
-    print("\n", add(n1, n2))
-elif choice == 's':
-    print("\n", sub(n1,n2))
-elif choice == 'm':
-    print("\n", mul(n1,n2))
-elif choice == 'd':
-    print("\n", div(n1,n2))
-else:
-    print("Error, Wrong input!")
+    if choice == 'a':
+        result = add(n1,n2)
+        print(f"\nResult: {result}")
+    elif choice == 's':
+        result = sub(n1,n2)
+        print(f"\nResult: {result}")
+    elif choice == 'm':
+        result = mul(n1, n2)
+        print(f"\nResult: {result}")
+    elif choice == 'd':
+        result = div(n1, n2)
+        print(f"\nResult: {result}")
+    else:
+        print("Error, Wrong input!")
+    again = input("\nWould you like to perform another calculation? (y/n): ").strip().lower()
+    if again != 'y':
+        print("Thank you for using the calculator.")
+        break
