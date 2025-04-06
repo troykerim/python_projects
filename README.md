@@ -1,2 +1,2 @@
 # python_projects
-Folder/repo that contains various python projects
+Assorment of various python projects.
