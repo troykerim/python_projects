@@ -15,7 +15,7 @@ def read_files(folder_path):
     try:
         py_files = [f for f in os.listdir(folder_path)
             if f.endswith('.py') and os.path.isfile(os.path.join(folder_path,f))]
-        print(f"The number of .py files in '{folder_path}' is {len(py_files)}")
+        print(f"The number of .py files in '{folder_path}' is {len(py_files)-1}")  # Minus 1 to ignore this python file
         if (len(py_files) >= 50):
             print(f"You have finished BigBoxSWE's Challenge! Continue to work hard!")
         else:
