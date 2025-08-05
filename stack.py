@@ -22,7 +22,13 @@ class Stack:
     def pop(self):
         if self.isEmpty():
             return "Stack is Empty"
-        return self.stack.pop()
+        # return self.stack.pop() # pop() is a built-in python function
+        # Long way to remove an element:
+        top_element = self.stack[-1] 
+        self.stack = self.stack[:-1]
+        return top_element 
+    
+    
     def top(self):  # AKA Peek, check top of stock, basically check last element in array
         if self.isEmpty():
             return "Stack is Empty"
@@ -56,20 +62,20 @@ def main():
             
         elif choice == '2':
             if stack.size() == 0:
-                print("Array is empty. Nothing to pop.")
+                print("Stack is empty. Nothing to pop.")
             else:
                 val = stack.pop()
                 print(f"Popped value: {val}")
                 
         elif choice == '3':
             if stack.size() == 0:
-                print("Array is empty!")
+                print("Stack is empty!")
             else:
                 val = stack.top()
-                print(f"Top of the stack value is: {val}")
+                print(f"Top of the stack is: {val}")
                 
         elif choice == '4':
-            print(f"Current size: {stack.size()}")
+            print(f"Current Stack size: {stack.size()}")
             
         elif choice == '5':
             print(f"Current Stack contents: {stack.stack}")
