@@ -37,11 +37,16 @@ def main():
             print("Please enter a valid integer or Q to quit.")
             continue
 
+        # Create a new node with the input value
         new_node = Node(num)
 
+        # Case 1: The list is empty (head is NULL)
+        # Both head and tail should point to the new node, since it is the only node.
         if head is None:
             head = new_node
             tail = new_node
+        # Case 2: The list already contains at least one node
+        # Append the new node to the end of the list and update the tail pointer.
         else:
             tail.next = new_node
             tail = new_node
