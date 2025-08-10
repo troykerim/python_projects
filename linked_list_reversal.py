@@ -25,9 +25,9 @@ def reverse(head):
     
     # Traverse the linked list and update pointers
     while curr is not None:
-        nextNode = curr.next    # Store the next pointer
+        nextNode = curr.next    # Store the next pointer, Temp variable, read the next pointer stored inside the current node.
         
-        curr.next = prev        # Reverse the current node's 'next' pointer 
+        curr.next = prev        # Reverse the current node's 'next' pointer, writing a new value into the next attribute of the current node.
         
         prev = curr             # Move the pointers one position ahead.  
         curr = nextNode 
