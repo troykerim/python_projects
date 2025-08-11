@@ -89,8 +89,70 @@ def insert_at_index(head, data, index):
     new_node.next = curr.next
     curr.next = new_node
     return head
-            
 
+
+def delete_head(head):
+    # Check if the list is empty
+    if head is None:
+        return None
+
+    # Store the current head in a temporary variable
+    temp = head
+
+    # Move the head pointer to the next node
+    head = head.next
+
+    # Delete the old head by removing the reference
+    del temp
+
+    return head
+
+def delete_tail(head):
+    # If the list is empty, return None
+    if not head:
+        return None
+
+    # If the list has only one node, delete it and return None
+    if not head.next:
+        return None
+
+    # Find the second last node
+    second_last = head
+    while second_last.next.next:
+        second_last = second_last.next
+
+    # Delete the last node
+    second_last.next = None
+
+    return head         
+
+def delete_at_index(head, idx):
+    temp = head
+    prev = None
+
+    # Base case if linked list is empty
+    if temp is None:
+        return head
+
+    # Case 1: Head is to be deleted
+    if idx == 1:
+        head = temp.next
+        return head
+
+    # Case 2: Node to be deleted is in middle
+    # Traverse till given position
+    for i in range(1, idx):
+        prev = temp
+        temp = temp.next
+        if temp is None:
+            print("Data not present")
+            return head
+
+    # If given position is found, delete node
+    if temp is not None:
+        prev.next = temp.next
+
+    return head
 def main():
     # Initialize the head and tail pointers NULL.
     head = None
@@ -148,14 +210,45 @@ def main():
                     continue
                 
                 # optional: show list after each insert
-                print("List after insert:")
+                print("\nList after insert:")
                 printList(head)
 
             except ValueError as e:
                 print(f"Insert failed: {e}")
                 
         elif sel == '2':
-            print("\nNot Implemented yet")
+            print("\nWhere do you want to delete a value?")
+            print("1. Delete at head")
+            print("2. Delete at tail")
+            print("3. Delete at specific index (0-based)")
+            sub = input("Enter a sub-choice: ").strip()
+
+            try:
+                printList(head)
+                if sub == '1':
+                    
+                    head = delete_head(head)
+
+                elif sub == '2':
+                    
+                    head = delete_tail(head)
+
+                elif sub == '3':
+                    # index first, then value
+                    idx = int(input("Enter an index: ").strip())
+                    data = int(input("Enter value to delete: ").strip())
+                    head = delete_at_index(head, data, idx)
+
+                else:
+                    print("Invalid sub-choice.")
+                    continue
+                
+                # optional: show list after each insert
+                print("\nList after insert:")
+                printList(head)
+
+            except ValueError as e:
+                print(f"Insert failed: {e}")
         elif sel == '3':
             print("\nNot Implemented yet")
         elif sel == '4':
