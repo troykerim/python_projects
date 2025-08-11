@@ -153,6 +153,18 @@ def delete_at_index(head, idx):
         prev.next = temp.next
 
     return head
+
+def count(head):
+    count = 0
+    curr = head 
+    
+    # Traverse linked list until we reach NULL.  Increment counter for each node we incounter
+    while curr is not None:
+        count += 1 
+        curr = curr.next 
+        
+    return count 
+
 def main():
     # Initialize the head and tail pointers NULL.
     head = None
@@ -163,8 +175,8 @@ def main():
         print("\nChoose an operation:")
         print("1. Insert a node")
         print("2. Delete a node")
-        print("3. Search for a node")
-        print("4. Get the size of the linked list")
+        print("3. Get the size of the linked list")
+        print("4. Search for a node")
         print("5. Reverse the linked list")
         print("6. Display linked list")
         print("Q. Quit")
@@ -250,9 +262,15 @@ def main():
             except ValueError as e:
                 print(f"Insert failed: {e}")
         elif sel == '3':
-            print("\nNot Implemented yet")
+            print("\nNumber of nodes in the linked list: ", count(head))
+            
         elif sel == '4':
-            print("\nNot Implemented yet")
+            target = int(input("Enter a value to search for: "))
+            if target:
+                print("\nThe target node was found!")
+            else:
+                print("\nThe target node was NOT found!")
+                
         elif sel == '5':
             print("\nNot Implemented yet")
         elif sel == '6':
