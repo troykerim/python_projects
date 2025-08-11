@@ -182,6 +182,21 @@ def search(head,target):
     # If there is no node with the target value, return false
     return False 
 
+def reverse(head):
+    curr = head 
+    prev = None 
+    
+    # Traverse the linked list and update pointers
+    while curr is not None:
+        nextNode = curr.next    # Store the next pointer, Temp variable, read the next pointer stored inside the current node.
+        
+        curr.next = prev        # Reverse the current node's 'next' pointer, writing a new value into the next attribute of the current node.
+        
+        prev = curr             # Move the pointers one position ahead.  
+        curr = nextNode 
+        
+    return prev
+
 def main():
     # Initialize the head and tail pointers NULL.
     head = None
@@ -209,7 +224,7 @@ def main():
         except ValueError:
             print("Please enter a valid integer or Q to quit.")
             continue
-        
+        # Insert an element
         if sel == '1':
             print("\nWhere do you want to insert the value?")
             print("1. Insert at head")
@@ -245,6 +260,7 @@ def main():
             except ValueError as e:
                 print(f"Insert failed: {e}")
                 
+        # Delete an element
         elif sel == '2':
             print("\nWhere do you want to delete a value?")
             print("1. Delete at head")
@@ -280,17 +296,23 @@ def main():
                 print(f"Insert failed: {e}")
         elif sel == '3':
             print("\nNumber of nodes in the linked list: ", count(head))
-            
+        
+        # Search for a particular node in the linked list
         elif sel == '4':
-            target = int(input("Enter a value to search for: "))
+            target = int(input("\nEnter a value to search for: "))
             
             if search(head,target):
                 print("\nThe target node was found!")
             else:
                 print("\nThe target node was NOT found!")
                 
+        # Reverse the Linked List
         elif sel == '5':
-            print("\nNot Implemented yet")
+            head = reverse(head)
+            print("\nHere is the linked list now: ")
+            printList(head)
+            print()
+        # Display the Linked List
         elif sel == '6':
             print()
             printList(head)           
