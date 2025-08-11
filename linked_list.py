@@ -165,6 +165,23 @@ def count(head):
         
     return count 
 
+# Find if a target value is present in a linked list
+def search(head,target):
+    
+    # Initial the current node with the head of the linked list
+    curr = head
+    
+    # Iterate over all nodes
+    while curr is not None:
+        # If the current node's value is equal to the target, return True
+        if curr.data == target:
+            return True 
+        
+        curr = curr.next 
+    
+    # If there is no node with the target value, return false
+    return False 
+
 def main():
     # Initialize the head and tail pointers NULL.
     head = None
@@ -266,7 +283,8 @@ def main():
             
         elif sel == '4':
             target = int(input("Enter a value to search for: "))
-            if target:
+            
+            if search(head,target):
                 print("\nThe target node was found!")
             else:
                 print("\nThe target node was NOT found!")
