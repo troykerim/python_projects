@@ -12,23 +12,23 @@
 
 class ListNode():
     def __init__(self, val = 0, next = None):
-        self.val = val
-        self.next = next 
+        self.val = val      # Data
+        self.next = next    # Next pointer   
         
 def merge(list1, list2):
-    temp_node = node = ListNode()
+    temp_node = node = ListNode() # Dummy head pointer 
     
     while list1 and list2:
-        if list1.val < list2.val:
-            node.next = list1 
-            list1 = list1.next 
+        if list1.val < list2.val:   # If the value in list 1 < list 2
+            node.next = list1       # take that node and add it to the list     
+            list1 = list1.next      
         else:
-            node.next = list2
+            node.next = list2      
             list2 = list2.next 
-        node = node.next 
+        node = node.next           # Otherwise take the node pointer and shift it by 1.
         
-    node.next = list1 if list1 else list2
-    return temp_node.next 
+    node.next = list1 if list1 else list2  # If the one of the lists is empty
+    return temp_node.next           
 
 def printList(node):
     while node is not None:
