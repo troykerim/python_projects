@@ -11,12 +11,20 @@ class Node:
         self.next = None
         self.prev = None 
         
+# Forward Traversal
 def forward(head):
     curr = head
     while curr is not None:
         print(curr.data, end=" ")
         curr = curr.next 
         
+    print()
+# Backward Traversal
+def reverse(tail):
+    curr = tail
+    while curr is not None:
+        print(curr.data, end=" ")
+        curr = curr.prev 
     print()
     
 if __name__ == "__main__":
@@ -31,5 +39,8 @@ if __name__ == "__main__":
     
     print("Forward Traversal: ", end="")
     forward(head)
+    
+    print("Backward Traversal: ", end="")
+    reverse(third)
     
     
