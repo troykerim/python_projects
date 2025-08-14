@@ -94,4 +94,14 @@ if __name__ == "__main__":
     head = insert_tail(head,data)
     printList(head)
     
+    data = 100 
+    pos = 3 
+    head = insert_any_index(head, data, pos)
+    printList(head)
+    
+    data = 20
+    pos = 100
+    head = insert_any_index(head, data, pos)
+    printList(head)
+    
     
