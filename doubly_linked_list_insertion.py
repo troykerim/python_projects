@@ -27,6 +27,44 @@ def insert_tail(head, data):
         curr.next = new_node
         new_node.prev = curr    # Set the new tail node to point back to the previous node.
     return head 
+
+
+    # This function can be used to replace the two functions above
+def insert_any_index(head, data, pos):
+    new_node = Node(data)
+    
+    # Inserting at the beginning
+    if pos == 1:
+        new_node.next = head
+        
+        # Check is the linked list is empty, set previous pointer to the new node
+        if head is not None:
+            head.prev = new_node
+        
+        # Set the new node as the new head of the linked list
+        head = new_node
+        return head 
+
+    curr = head 
+    for _ in range(1, pos - 1):
+        if curr is None:
+            print("Position is out of bounds.")  # Edge case if they ask for an index not in the linked list 
+            return head 
+        curr = curr.next 
+    
+    if curr is None:
+        print("Position is out of bounds.")  # Edge case if they ask for an index not in the linked list 
+        return head 
+        
+    new_node.prev = curr 
+    new_node.next = curr.next 
+    curr.next = new_node
+    
+    # If the new node is not the last node, update the prev pointer of the next node to point to the new node
+    if new_node.next is not None:
+        new_node.next.prev = new_node 
+    return head 
+
  
 def printList(head):
     curr = head 
