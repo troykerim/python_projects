@@ -4,7 +4,7 @@ class Node:
         self.next = None
         self.prev = None 
         
-def insert_front(head, data):
+def insert_head(head, data):
     # Create a new node
     new_node = Node(data)
     new_node.next = head  
@@ -13,6 +13,21 @@ def insert_front(head, data):
         head.prev = new_node
     return new_node
 
+def insert_tail(head, data):
+    new_node = Node(data)
+    
+    if head is None:
+        head = new_node
+    else:
+        curr = head 
+        # Iterate over the entire linked list until you reach null
+        while curr.next is not None:
+            curr = curr.next  # Move the current pointer to the next node for each iteration.
+        # At the end of the while loop, set the previous tail element's next pointer to point to the new node
+        curr.next = new_node
+        new_node.prev = curr    # Set the new tail node to point back to the previous node.
+    return head 
+ 
 def printList(head):
     curr = head 
     while curr is not None:
@@ -31,6 +46,14 @@ if __name__ == "__main__":
     
     print("After inserting a Node in the front: ", end=' ')
     data = 1 
-    head = insert_front(head, data)
+    head = insert_head(head, data)
     
     printList(head)
+    
+    
+    data = 55
+    print("Inserting a Node at the end: ", end=" ")
+    head = insert_tail(head,data)
+    printList(head)
+    
+    
