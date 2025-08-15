@@ -49,6 +49,39 @@ def del_last(head):
     # Return the updated head
     return head
 
+# Can be used to replace the other 2 functions above
+def del_pos(head, pos):
+
+    # If the list is empty
+    if head is None:
+        return head
+
+    curr = head
+
+    for i in range(1, pos):
+        if curr is None:
+            break
+        curr = curr.next
+
+    if curr is None:
+        return head
+
+    # Update the previous node's next pointer
+    if curr.prev is not None:
+        curr.prev.next = curr.next
+
+    # Update the next node's prev pointer
+    if curr.next is not None:
+        curr.next.prev = curr.prev
+
+    # If the node to be deleted is the head node
+    if head == curr:
+        head = curr.next
+
+    # Deallocate memory for the deleted node
+    del curr
+    return head
+
 def print_list(head):
     curr = head
     while curr is not None:
@@ -79,5 +112,20 @@ if __name__ == "__main__":
     
     print("Deletion at the end: ", end="")
     head = del_last(head)
+    print_list(head)
+    
+    print("Adding more elements to the list: ", end="")
+    head.next.next = Node(44)
+    head.next.next.prev = head.next
+    
+    head.next.next.next = Node(90)
+    head.next.next.next.prev = head.next.next
+    
+    head.next.next.next.next = Node(800)
+    head.next.next.next.next.prev = head.next.next.next
+    print_list(head)
+    pos = 4
+    head = del_pos(head, pos)
+    print("Removing element at index:",pos,"in to the list: ", end="")
     print_list(head)
     
