@@ -29,6 +29,26 @@ def del_head(head):
     # Return new head
     return head
 
+def del_last(head):
+  
+    # Edge cases
+    if head is None:
+        return None
+    if head.next is None:
+        return None
+
+    # Traverse to the last node
+    curr = head
+    while curr.next is not None:
+        curr = curr.next
+
+    # Update the previous node's next pointer
+    if curr.prev is not None:
+        curr.prev.next = None
+
+    # Return the updated head
+    return head
+
 def print_list(head):
     curr = head
     while curr is not None:
@@ -57,4 +77,7 @@ if __name__ == "__main__":
     head = del_head(head)
     print_list(head)
     
+    print("Deletion at the end: ", end="")
+    head = del_last(head)
+    print_list(head)
     
