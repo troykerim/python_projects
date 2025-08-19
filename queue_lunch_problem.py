@@ -15,3 +15,11 @@ def countStudents(students, sandwiches):
             break
     return res 
 
+students = [1,0,1,0]
+sandwiches = [1, 0, 1, 0]
+
+print(countStudents(students, sandwiches))
+
+students = [1,1,1,0]
+sandwiches = [0, 0, 1, 0]
+print(countStudents(students, sandwiches))
