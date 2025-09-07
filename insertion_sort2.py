@@ -14,9 +14,15 @@ def insertionSort(pairs):
     result.append(pairs[:]) 
     return result 
 
-pairs = [(5, "apple"), (2, "banana"),(9, "cherry")]     
 
-print(insertionSort(pairs))  
+pairs = [
+    Pair(5, "apple"),
+    Pair(2, "banana"),
+    Pair(9, "cherry")
+]  
+
+print([(p.key, p.value) for p in insertionSort(pairs)[0]])
+
         
         
         
