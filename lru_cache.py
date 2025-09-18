@@ -1,4 +1,4 @@
-rom collections import OrderedDict
+from collections import OrderedDict
 
 # Define a class 'LRUCache' for a Least Recently Used (LRU) cache
 class LRUCache:
