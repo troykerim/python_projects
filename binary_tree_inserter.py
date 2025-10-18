@@ -28,7 +28,7 @@ def find_node(node, value):
 
 
 def main():
-    print("\n🌳 Binary Tree Builder 🌳")
+    print("\nBinary Tree Builder")
     root_val = input("Enter value for root node: ").strip()
     root = TreeNode(root_val)
     print(f"Root '{root_val}' created.\n")
