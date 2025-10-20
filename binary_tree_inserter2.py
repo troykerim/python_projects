@@ -17,70 +17,45 @@ def find_node(node, value):
     return find_node(node.right, value)
 
 
-def display_tree(root):
-    """Display the binary tree in a structured left-right format (graphical style)."""
+def get_tree_depth(root):
     if not root:
+        return 0
+    return 1 + max(get_tree_depth(root.left), get_tree_depth(root.right))
+
+
+def display_tree(root):
+    """Prints the binary tree with consistent spacing."""
+    if root is None:
         print("(empty tree)")
         return
 
-    lines, *_ = build_tree_string(root, 0, False, '-')
-    for line in lines:
-        print(line)
+    depth = get_tree_depth(root)
+    max_width = 2 ** depth * 4
 
+    def fill_levels(node, level=0, pos=max_width // 2, result=None):
+        if result is None:
+            result = {}
+        if node is None:
+            return result
+        if level not in result:
+            result[level] = []
+        result[level].append((pos, str(node.data)))
+        gap = max_width // (2 ** (level + 2))
+        fill_levels(node.left, level + 1, pos - gap, result)
+        fill_levels(node.right, level + 1, pos + gap, result)
+        return result
 
-def build_tree_string(root, curr_index, include_index=False, delimiter='-'):
-    """Recursively build a printable tree structure (ASCII art style)."""
-    if root is None:
-        return [], 0, 0, 0
-
-    line1 = []
-    line2 = []
-
-    node_repr = str(root.data)
-
-    new_root_width = gap_size = len(node_repr)
-
-    # Get the left and right sub-boxes, their widths, and root start/end positions
-    l_box, l_box_width, l_root_start, l_root_end = build_tree_string(root.left, 2 * curr_index + 1, include_index, delimiter)
-    r_box, r_box_width, r_root_start, r_root_end = build_tree_string(root.right, 2 * curr_index + 2, include_index, delimiter)
-
-    # Draw branches connecting the current node to its children
-    if l_box_width > 0:
-        l_root = (l_root_start + l_root_end) // 2 + 1
-        line1.append(' ' * (l_root + 1))
-        line1.append('_' * (l_box_width - l_root))
-        line2.append(' ' * l_root + '/')
-        line2.append(' ' * (l_box_width - l_root))
-        new_root_start = l_box_width + 1
-    else:
-        new_root_start = 0
-
-    line1.append(node_repr)
-    line2.append(' ' * new_root_width)
-
-    if r_box_width > 0:
-        r_root = (r_root_start + r_root_end) // 2
-        line1.append('_' * r_root)
-        line1.append(' ' * (r_box_width - r_root))
-        line2.append(' ' * r_root + '\\')
-        line2.append(' ' * (r_box_width - r_root))
-
-    gap = ' '
-    new_root_end = new_root_start + new_root_width - 1
-    gap_size = 1
-
-    new_box = [''.join(line1), ''.join(line2)]
-
-    # Merge sub-boxes with spaces in between
-    l_box_height = len(l_box)
-    r_box_height = len(r_box)
-    max_box_height = max(l_box_height, r_box_height)
-    for i in range(max_box_height):
-        left_line = l_box[i] if i < l_box_height else ' ' * l_box_width
-        right_line = r_box[i] if i < r_box_height else ' ' * r_box_width
-        new_box.append(left_line + gap * gap_size + right_line)
-
-    return new_box, len(new_box[0]), new_root_start, new_root_end
+    levels = fill_levels(root)
+    last_line = 0
+    for level in sorted(levels.keys()):
+        line = ""
+        prev_pos = 0
+        for pos, val in sorted(levels[level], key=lambda x: x[0]):
+            space = pos - prev_pos
+            line += " " * max(space, 0) + val
+            prev_pos = pos + len(val)
+        print(line.rstrip())
+        last_line = level
 
 
 def main():
@@ -90,6 +65,7 @@ def main():
     print(f"Root '{root_val}' created.\n")
 
     while True:
+        print("\nCurrent Tree Structure:\n")
         display_tree(root)
         print("\nDo you want to add more nodes? (y/n)")
         choice = input("Enter choice: ").strip().lower()
