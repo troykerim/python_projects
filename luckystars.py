@@ -26,7 +26,7 @@ QUESTION_FACE = ['+-----------+',
                  '+-----------+']
 FACE_WIDTH = 13
 FACE_HEIGHT = 7
-print("""Lucky Stars, by Al Sweigart al@inventwithpython.com
+print("""Lucky Stars,
 A "press your luck" game where you roll dice with Stars, Skulls, and
 Question Marks.
 On your turn, you pull three random dice from the dice cup and roll
